@@ -13,7 +13,7 @@ function routing($urlRouterProvider, $locationProvider, $stateProvider) {
       controllerAs: '$ctrl',
     })
     .state('calendarPage', {
-      url: '/funnels/new/',
+      url: '/Calendar_Page/',
       templateUrl: calendarView,
       controller: 'CalendarController',
       controllerAs: '$ctrl',
