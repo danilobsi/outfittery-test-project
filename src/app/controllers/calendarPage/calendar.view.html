@@ -1,0 +1,64 @@
+<ps-nav-header></ps-nav-header>
+
+<form name="form" ng-submit="$ctrl.submit()">
+    <section>
+        Would you like to schedule a call with your stylist before they pack your box?
+        <label for="callFromStylist">Yes, please</label>
+        <input type="checkbox" name="callFromStylist" ng-model="$ctrl.callFromStylist" />
+    </section>
+
+    <section ng-show="!$ctrl.callFromStylist">
+        Is there anything else that you would like to share with your Stylist?
+        <textarea ng-model="ctrl.obs"></textarea>
+    </section>
+
+    <section ng-show="$ctrl.callFromStylist">
+        <section>
+            <p>
+                Schedule a call with your stylist at a time to suit you, to talk about your order, 
+                style and preferences.
+            </p>
+            <p>
+                <b>Contact telephone number</b>
+                <dropdown value="'Germany (+49)'" range="$ctrl.countryCodes"></dropdown> 
+                <!-- <phone-number-input ng-model="$ctrl.phoneNumber"></phone-number-input> -->
+                <input type="tel" ng-model="$ctrl.phoneNumber" ng-required="$ctrl.callFromStylist" />
+            </p>
+        </section>
+        <section>
+            Pick a day and time
+            <div ng-init="$ctrl.currentDate = ''" ng-repeat="item in $ctrl.timeslots">
+                <button ng-click="$ctrl.currentDate = item.date" 
+                        ng-disabled="item.slots.length == 0"
+                        type="button"
+                        ng-class="">
+                    {{item.date}}
+                </button>
+                <div ng-show="$ctrl.currentDate == item.date">
+                    <div ng-repeat="time in item.slots">
+                        <label>{{time.start}}</label>
+                        <input  name="time" ng-model="$ctrl.currentTime" type="radio" 
+                                ng-required="$ctrl.callFromStylist" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <order-btn label-key="CONFIRM ORDER"></order-btn>
+</form>
+
+<ps-footer
+  link-list="[
+    {
+      title: 'pages.app.footer.link1',
+      url: '/terms',
+    }, {
+      title: 'pages.app.footer.link2',
+      url: '/imprint',
+    }, {
+      title: 'pages.app.footer.link3',
+      url: '/privacy',
+    }
+  ]"
+></ps-footer>

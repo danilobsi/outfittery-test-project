@@ -2,6 +2,7 @@ import phoneNumberInput from './phoneNumberInput.html';
 
 angular
   .module($config.namespace)
+  //.module('phoneNumberInputDirective', [])
   .directive('phoneNumberInput', [
     'PhoneValidation',
     function (PhoneValidation) {
