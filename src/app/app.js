@@ -13,6 +13,7 @@ import routing from 'config/routing';
 
 import AppController from 'controllers/app';
 import CalendarController from 'controllers/calendarPage';
+import SuccessController from 'controllers/successPage';
 
 const MODULE_NAME = 'ps-app';
 
@@ -23,6 +24,7 @@ angular.module(MODULE_NAME, [
   // Controllers
   AppController,
   CalendarController,
+  SuccessController,
   // Services
 ])
   .config(routing)

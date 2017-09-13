@@ -7,11 +7,6 @@
         <input type="checkbox" name="callFromStylist" ng-model="$ctrl.callFromStylist" />
     </section>
 
-    <section ng-show="!$ctrl.callFromStylist">
-        Is there anything else that you would like to share with your Stylist?
-        <textarea ng-model="ctrl.obs"></textarea>
-    </section>
-
     <section ng-show="$ctrl.callFromStylist">
         <section>
             <p>
@@ -37,12 +32,17 @@
                 <div ng-show="$ctrl.currentDate == item.date">
                     <div ng-repeat="time in item.slots">
                         <label>{{time.start}}</label>
-                        <input  name="time" ng-model="$ctrl.currentTime" type="radio" 
+                        <input  name="time" ng-model="$ctrl.currentTime" ng-value="time.start" type="radio" 
                                 ng-required="$ctrl.callFromStylist" />
                     </div>
                 </div>
             </div>
         </section>
+    </section>
+
+    <section>
+        Is there anything else that you would like to share with your Stylist?
+        <textarea ng-model="$ctrl.obs" required></textarea>
     </section>
 
     <order-btn label-key="CONFIRM ORDER"></order-btn>

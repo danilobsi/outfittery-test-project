@@ -8,11 +8,12 @@ import config from 'config/config';
 
 const CONTROLLER_NAME = 'CalendarController';
 
-function calendarController($timeout, $http) {
+function calendarController($timeout, $http, $state) {
     const vm = this;
 
     vm.countryCodes = ['Germany (+49)', 'Brazil (+55)'];
     vm.callFromStylist = true;
+    vm.obs = "";
 
     $http.get('https://nrg-frontend-task-api.herokuapp.com/timeslots').then(
         (response) => {
@@ -23,7 +24,27 @@ function calendarController($timeout, $http) {
         });
     
     vm.submit = function (){
-        alert('submitted')
+        var appointment = {
+            date: vm.currentDate,//'yyyy-MM-dd', 
+            slot: vm.currentTime,//'HH:mm', 
+            orderConfirmationComment: vm.obs,//'TEXT', 
+            phone: vm.phoneNumber//'+4901234567890'
+        };
+        if (vm.callFromStylist){
+            $http.post('https://nrg-frontend-task-api.herokuapp.com/appointments', appointment).then(
+            (response) => {
+                submitAction(appointment);
+            }, 
+            (err) =>{
+                alert('error');
+            });
+        }
+        else
+            submitAction(appointment);
+    }
+
+    function submitAction(appointment){        
+        $state.go('successPage', {obj: appointment});
     }
 //   vm.heroPicture = heroPicture;
 //   vm.feature1Picture = feature1Picture;
@@ -32,6 +53,6 @@ function calendarController($timeout, $http) {
 //   vm.sentencePicture = sentencePicture;
 }
 
-calendarController.$inject = ['$timeout', '$http', 'LoggerService', 'AbLoggerService'];
+calendarController.$inject = ['$timeout', '$http', '$state'];
 
 export { CONTROLLER_NAME as calendarControllerName, calendarController };

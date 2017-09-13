@@ -1,0 +1,20 @@
+<ps-nav-header></ps-nav-header>
+<section ng-show="$ctrl.currentAppointment">
+  Thank you very much! You have a call booked with {{$ctrl.currentAppointment.stylist}} 
+  on the {{$ctrl.currentAppointment.date}} at {{$ctrl.currentAppointment.slot}}
+</section>
+<order-btn label-key="GO TO ACCOUNT"></order-btn>
+<ps-footer
+  link-list="[
+    {
+      title: 'pages.app.footer.link1',
+      url: '/terms',
+    }, {
+      title: 'pages.app.footer.link2',
+      url: '/imprint',
+    }, {
+      title: 'pages.app.footer.link3',
+      url: '/privacy',
+    }
+  ]"
+></ps-footer>
