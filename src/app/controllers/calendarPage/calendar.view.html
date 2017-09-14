@@ -1,51 +1,79 @@
 <ps-nav-header></ps-nav-header>
 
+<div class="breadcrumb">
+    <img src="img/breadcrumb.png" class="breadcrumb" />
+</div>
 <form name="form" ng-submit="$ctrl.submit()">
-    <section>
-        Would you like to schedule a call with your stylist before they pack your box?
-        <label for="callFromStylist">Yes, please</label>
-        <input type="checkbox" name="callFromStylist" ng-model="$ctrl.callFromStylist" />
+    <section class="scheduleCheck">
+        <section class="column img">
+            <img src="img/Stylist@2x.png" />
+        </section>
+        <section class="column call">
+            Would you like to schedule a call with your stylist before they pack your box?
+            <section class="yesPlease">
+                <img src="img/calendar-icon.svg" />
+                <label for="callFromStylist">Yes, please!</label>
+                <input type="checkbox" name="callFromStylist" ng-model="$ctrl.callFromStylist" />
+            </section>
+        </section>
     </section>
 
-    <section ng-show="$ctrl.callFromStylist">
-        <section>
-            <p>
+    <section class="schedule" ng-show="$ctrl.callFromStylist">
+        <section class="box">
+            <p class="text">
                 Schedule a call with your stylist at a time to suit you, to talk about your order, 
                 style and preferences.
             </p>
             <p>
-                <b>Contact telephone number</b>
-                <dropdown value="'Germany (+49)'" range="$ctrl.countryCodes"></dropdown> 
+                <span class="title">Contact telephone number</span>
+                <!-- <dropdown value="'Germany (+49)'" range="$ctrl.countryCodes" class="col-md-4"></dropdown>  -->
+                <select
+                    ng-model="$ctrl.countryCode"
+                    name="dropdown"
+                    ng-options="item as item.label for item in $ctrl.countryCodes track by item.code">
+                </select>
+
                 <!-- <phone-number-input ng-model="$ctrl.phoneNumber"></phone-number-input> -->
-                <input type="tel" ng-model="$ctrl.phoneNumber" ng-required="$ctrl.callFromStylist" />
+                <input type="tel" ng-model="$ctrl.phoneNumber" ng-required="$ctrl.callFromStylist" class="input col-md-4" />
             </p>
         </section>
-        <section>
-            Pick a day and time
-            <div ng-init="$ctrl.currentDate = ''" ng-repeat="item in $ctrl.timeslots">
-                <button ng-click="$ctrl.currentDate = item.date" 
+        <section class="pickADay">
+            <span class="title">Pick a day and time</span>
+            <div ng-init="$ctrl.currentDate = ''" class="dates">
+                <button ng-repeat="item in $ctrl.timeslots"
+                        ng-click="$ctrl.currentDate = item.date" 
                         ng-disabled="item.slots.length == 0"
                         type="button"
-                        ng-class="">
-                    {{item.date}}
+                        class="pickDate column"
+                        ng-class="{'selected': $ctrl.currentDate == item.date}">
+                    <span class="weekDay">{{item.date | date: "EEEE"}}</span><br />
+                    <span class="monthDay">{{item.date | date: "MMM dd"}}</span>
                 </button>
-                <div ng-show="$ctrl.currentDate == item.date">
-                    <div ng-repeat="time in item.slots">
-                        <label>{{time.start}}</label>
-                        <input  name="time" ng-model="$ctrl.currentTime" ng-value="time.start" type="radio" 
-                                ng-required="$ctrl.callFromStylist" />
-                    </div>
+            </div>
+            <div ng-repeat="item in $ctrl.timeslots" 
+                 ng-show="$ctrl.currentDate == item.date"
+                 class="timeslots">
+                <div ng-repeat="time in item.slots" class="pickTime" 
+                     ng-class="{selectedTime: $ctrl.currentTime == time.start}"
+                     ng-click="$ctrl.currentTime = time.start">
+                    <label>{{time.start | date: "hh:mm a"}}</label>
+                    <input  name="time" ng-model="$ctrl.currentTime" ng-value="time.start" type="radio" 
+                            ng-required="$ctrl.callFromStylist" />
                 </div>
+            </div>
             </div>
         </section>
     </section>
 
-    <section>
-        Is there anything else that you would like to share with your Stylist?
+    <section class="comments box">
+        Is there anything else that you would like to share with your Stylist?<br />
         <textarea ng-model="$ctrl.obs" required></textarea>
     </section>
 
-    <order-btn label-key="CONFIRM ORDER"></order-btn>
+    <div class="orderBtn">
+        <button  type="button">&#060;</button>
+        <order-btn label-key="CONFIRM ORDER"></order-btn>
+    </div>
 </form>
 
 <ps-footer

@@ -1,0 +1,136 @@
+body
+    background-color: #FFF
+form
+    margin: 15px
+
+.column
+    float: left;
+
+.breadcrumb
+    text-align: center
+    width: 100%
+    img
+        width: 300px
+    
+.scheduleCheck
+    color: #333333
+    font-family: Gotham-bold
+    line-height: 22px
+    .img
+        padding-right: 8px
+        img
+            height: 68px
+            width: 68px
+    .call
+        width: 70%
+    .yesPlease
+        margin-top: 13px
+        vertical-align: middle
+        padding-top: 10px
+        padding-left: 10px
+        padding-bottom: 10px
+        border: 1px #2880A3 solid
+        border-radius: 2px
+        color: #333333
+        font-size: 14px
+        font-family: OpenSans
+        height: 38px
+        width: 212px
+        
+        input[type="checkbox"]
+            float: right
+            margin-right: 14px
+            height: 20px
+            width: 20px
+            border-radius: 2px
+            background: #2880A3
+    
+    &:after
+        content: ""
+        clear: both
+        display: table
+        
+.schedule
+    margin-top: 38px
+    .text
+        color: #333333
+        font-size: 14px
+        font-family: OpenSans
+        line-height: 19px
+        margin: 0
+    .title
+        color: #333333
+        font-size: 16px
+        font-family: Gotham
+        font-weight: bold
+.box
+    background-color: #EEEEEE
+    padding: 20px
+    padding-top: 31px
+    input[type="tel"], select
+        padding: 10px
+        margin-top: 10px
+        width: 100%
+        max-width: 300px
+
+.comments
+    margin-top: 38px
+    textarea
+        margin-top: 12px
+        width: 250px
+        height: 127px
+
+.orderBtn
+    text-align: center
+    margin-top: 32px
+    margin-bottom: 33px
+    button[type="button"]
+        border: 1px #2880A3 solid
+        background-color: #FFF
+        color: #2880A3
+        height: 60px
+        padding: 10px
+        font-size: 18px
+        font-weight: bold
+.pickADay
+    margin-top: 8px
+    .dates
+        margin: 4px
+        &:after
+            content: ""
+            clear: both
+            display: table
+
+    .pickDate
+        margin: 3px
+        width: 80px
+        border: 1px #CDCCCC solid
+        border-radius: 2px
+        background-color: #FFF
+        color: #333
+        padding: 6px
+        &:disabled
+            color: #CDCCCC
+        .weekDay
+            font-size: 10px
+            font-family: OpenSans
+        .monthDay
+            font-size: 14px
+            font-family: Gotham
+            font-weight: bold
+    .selected
+        border: 1px #2880A3 solid
+        background-color: rgba(40, 128, 163, 0.2)
+.timeslots
+    .pickTime
+        border-bottom: 2px #CDCCCC solid
+        padding: 10px
+        input[type="radio"]
+            float: right
+    .selectedTime
+        color: #2880A3
+        font-weight: bold
+    &:after
+        content: ""
+        clear: both
+        display: table
