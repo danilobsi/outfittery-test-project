@@ -1,9 +1,83 @@
 <ps-nav-header></ps-nav-header>
-<section ng-show="$ctrl.currentAppointment">
-  Thank you very much! You have a call booked with {{$ctrl.currentAppointment.stylist}} 
-  on the {{$ctrl.currentAppointment.date}} at {{$ctrl.currentAppointment.slot}}
-</section>
-<order-btn label-key="GO TO ACCOUNT"></order-btn>
+
+<div class="header">
+    <img src="img/breadcrumb.png" class="breadcrumb" /><br />
+    <img src="img/Stylist@2x.png" />
+</div>
+
+<form>
+  <section ng-show="$ctrl.currentAppointment">
+    Thank you very much! You have a call booked with {{$ctrl.currentAppointment.stylist}} 
+    on the {{$ctrl.currentAppointment.date | date: "dd.MM.yyyy"}} at {{$ctrl.currentAppointment.slot}}
+  </section>
+
+  <section class="box">
+    <section class="content">
+      <div class="row">
+        <div class="column">
+          &nbsp;
+        </div>
+        <div class="column">
+          <span class="textContent">Your order details</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <img src="img/icon-wallet.svg" />
+        </div>
+        <div class="column">
+          <span class="title">Payment Method</span>
+          <p class="textContent">
+            <b>{{$ctrl.order.PaymentMethod.CardBrand}}</b><br />
+            {{$ctrl.order.PaymentMethod.CardNumber}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <img src="img/icon-house.svg" />
+        </div>
+        <div class="column">
+          <span class="title">Delivery Adress</span>
+          <p class="textContent">
+            {{$ctrl.order.DeliveryAddress.Address}}<br />
+            {{$ctrl.order.DeliveryAddress.ZipCode}} {{$ctrl.order.DeliveryAddress.City}}, {{$ctrl.order.DeliveryAddress.Country}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <img src="img/icon-Money.svg" />
+        </div>
+        <div class="column">
+          <span class="title">Billing Adress</span>
+          <p class="textContent">
+            {{$ctrl.order.BillingAddress.Address}}<br />
+            {{$ctrl.order.BillingAddress.ZipCode}} {{$ctrl.order.BillingAddress.City}}, {{$ctrl.order.BillingAddress.Country}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <img src="img/icon-pick.svg" />
+        </div>
+        <div class="column">
+          <p class="textContent">
+            <b>Add call date to calendar</b><br />
+            + Google calendar<br />
+            + Outlook<br />
+            + Apple iCal<br />
+          </p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <div class="accountBtn">
+    <order-btn label-key="GO TO ACCOUNT"></order-btn>
+  </div>
+
+</form>
 <ps-footer
   link-list="[
     {

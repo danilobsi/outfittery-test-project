@@ -11,6 +11,7 @@ import { successControllerName, successController } from './success.controller';
 //import dropdown from 'shared/components/dropdown'
 //import orderBtn from 'shared/components/orderBtn'
 //import phoneNumberInput from 'shared/directives/phoneNumberInput/phoneNumberInput.js'
+import './success.style.sass';
 
 const MODULE_NAME = 'SuccessController';
 
